@@ -25,16 +25,11 @@ cd college-website
 Run website with live server
 
 ## Live Demo
-Vercel Deployment
-- linkkkk
+Vercel: https://college-website-black-mu.vercel.app
 
 ## Folder Structure
-## 📁 Project Structure
-
 ```bash
 WEBSITE/
-├── src/                      # Source files
-│
 ├── Pages/
 │   ├── index.html
 │   ├── about.html
@@ -55,14 +50,7 @@ WEBSITE/
 │   ├── chatbot.js
 │   ├── Calender.pdf
 │   └── FeeStr.pdf
-│
-├── Configuration/
-│   ├── package.json
-│   ├── postcss.config.mjs
-│   └── vite.config.ts
-│
-├── .gitignore
-├── ATTRIBUTIONS.md
+|
 └── README.md
 ```
 
