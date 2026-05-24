@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Life - Walchand College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+        /* Smooth transitions */
+        * { transition: all 0.3s ease; }
+        .carousel-item { display: none; }
+        .carousel-item.active { display: block; }
+    </style>
+    <script src="chatbot.js"></script>
+    <script>
+        tailwind.config = {
+        theme: {
+            extend: {
+            fontFamily: {
+                cedar: ['"Cedarville Cursive"', 'cursive'],
+            }
+            }
+        }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <!-- <i class="fas fa-graduation-cap text-3xl text-blue-600"></i>
+                    <span class="ml-2 text-xs font-bold text-gray-800">WALCHAND COLLEGE OF ENGINEERING</span> -->
+                    <img height="150px" width="300px" src="https://walchandsangli.ac.in/wp-content/uploads/WCE-1-scaled.png" alt="logo">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 font-semibold hover:text-blue-800">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600">About</a>
+                    <a href="admissions.html" class="text-gray-700 hover:text-blue-600">Admissions</a>
+                    
+                    <!-- Departments Dropdown -->
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 flex items-center">
+                            Departments <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
+                            <a href="departments.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">All Departments</a>
+                            <a href="cse.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Computer Science</a>
+                            <a href="aiml.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">AI & ML</a>
+                            <a href="mechanical.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Mechanical</a>
+                            <a href="electrical.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Electrical</a>
+                        </div>
+                    </div>
+
+                    <a href="placements.html" class="text-gray-700 hover:text-blue-600">Placements</a>
+                    <a href="student-life.html" class="text-blue-600 hover:text-blue-600">Student Life</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a>
+                    
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="border border-gray-300 rounded-full px-4 py-1 pl-10 text-sm focus:outline-none focus:border-blue-500">
+                        <i class="fas fa-search absolute left-3 top-2 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-700 font-semibold">Home</a>
+                <a href="about.html" class="block text-gray-700 hover:text-blue-600">About</a>
+                <a href="admissions.html" class="block text-gray-700 hover:text-blue-600">Admissions</a>
+                <div>
+                    <button id="mobile-dept-toggle" class="w-full text-left text-gray-700 hover:text-blue-600">
+                        Departments <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                    <div id="mobile-dept-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="departments.html" class="block text-gray-600 hover:text-blue-600">All Departments</a>
+                        <a href="cse.html" class="block text-gray-600 hover:text-blue-600">Computer Science</a>
+                        <a href="aiml.html" class="block text-gray-600 hover:text-blue-600">AI & ML</a>
+                        <a href="mechanical.html" class="block text-gray-600 hover:text-blue-600">Mechanical</a>
+                        <a href="electrical.html" class="block text-gray-600 hover:text-blue-600">Electrical</a>
+                    </div>
+                </div>
+                <a href="placements.html" class="block text-gray-700 hover:text-blue-600">Placements</a>
+                <a href="student-life.html" class="block text-blue-600 hover:text-blue-600">Student Life</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-blue-600">Contact</a>
+                <input type="text" placeholder="Search..." class="w-full border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-blue-500">
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Student Life at Walchand College</h1>
+            <p class="text-xl font-cedar">Beyond Academics - Life, Learning, and Memories</p>
+        </div>
+    </section>
+
+    <section id="clubs" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Clubs & Communities</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Coding Club</h3>
+                    <p class="text-gray-600 mb-4">Organize hackathons, coding competitions, and workshops on latest technologies.</p>
+                    <span class="text-sm text-blue-600 font-semibold">500+ Members</span>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Robotics Club</h3>
+                    <p class="text-gray-600 mb-4">Build robots, participate in competitions, and explore automation.</p>
+                    <span class="text-sm text-green-600 font-semibold">300+ Members</span>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-music text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Music Club</h3>
+                    <p class="text-gray-600 mb-4">Jam sessions, concerts, and music festivals throughout the year.</p>
+                    <span class="text-sm text-purple-600 font-semibold">250+ Members</span>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-theater-masks text-3xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Drama Club</h3>
+                    <p class="text-gray-600 mb-4">Street plays, theatre performances, and annual drama fest.</p>
+                    <span class="text-sm text-orange-600 font-semibold">200+ Members</span>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-camera text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Photography Club</h3>
+                    <p class="text-gray-600 mb-4">Photo walks, exhibitions, and workshops by professional photographers.</p>
+                    <span class="text-sm text-red-600 font-semibold">180+ Members</span>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl">
+                    <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-3xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Social Service Club</h3>
+                    <p class="text-gray-600 mb-4">Community outreach, blood donation camps, and environmental initiatives.</p>
+                    <span class="text-sm text-teal-600 font-semibold">400+ Members</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hostel" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Hostel Facilities</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=600&fit=crop" alt="Hostel" class="rounded-lg shadow-xl mb-6">
+                    <h3 class="text-2xl font-bold mb-4">Modern Living Spaces</h3>
+                    <p class="text-gray-600 mb-4">Our hostels provide comfortable and secure accommodation for both boys and girls with separate blocks. Each room is well-furnished and designed for optimal study and rest.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-wifi text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">High-Speed WiFi</h4>
+                        <p class="text-gray-600 text-sm">24/7 high-speed internet connectivity in all rooms and common areas.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-utensils text-4xl text-green-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Hygienic Mess</h4>
+                        <p class="text-gray-600 text-sm">Nutritious meals with multiple cuisines and special dietary options.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-dumbbell text-4xl text-purple-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Gym & Sports</h4>
+                        <p class="text-gray-600 text-sm">Well-equipped gym and indoor/outdoor sports facilities.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-shield-alt text-4xl text-orange-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">24/7 Security</h4>
+                        <p class="text-gray-600 text-sm">CCTV surveillance, security guards, and biometric access control.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-wind text-4xl text-red-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">AC & Non-AC Rooms</h4>
+                        <p class="text-gray-600 text-sm">Choice of air-conditioned and non-AC accommodation.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <i class="fas fa-medkit text-4xl text-teal-600 mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Medical Facilities</h4>
+                        <p class="text-gray-600 text-sm">24/7 medical support with on-campus health center.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Events Gallery</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop" alt="Tech Fest" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Tech Fest 2024</h3>
+                            <p class="text-gray-200 text-sm">Annual Technical Festival</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop" alt="Cultural Fest" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Cultural Night</h3>
+                            <p class="text-gray-200 text-sm">Music, Dance & Drama</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=600&h=400&fit=crop" alt="Sports Day" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Annual Sports Day</h3>
+                            <p class="text-gray-200 text-sm">Inter-Department Competition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop" alt="Hackathon" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Hackathon 2024</h3>
+                            <p class="text-gray-200 text-sm">24-hour Coding Marathon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop" alt="Graduation" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Convocation Day</h3>
+                            <p class="text-gray-200 text-sm">Graduation Ceremony</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=600&h=400&fit=crop" alt="Workshop" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-xl">Industry Workshops</h3>
+                            <p class="text-gray-200 text-sm">Guest Lectures & Training</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Student Testimonials</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/26.jpg" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Arjun Singh</h4>
+                            <p class="text-sm text-gray-600">CSE - Final Year</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The campus life here is amazing! From tech fests to cultural events, there's always something exciting happening. The clubs and communities provide great opportunities to explore our interests beyond academics."</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/76.jpg" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Diya Mehta</h4>
+                            <p class="text-sm text-gray-600">AI/ML - Third Year</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The hostel facilities are excellent with all modern amenities. The mess food is good and the security makes parents feel assured. It's like a home away from home!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img height="150px" width="300px" src="https://walchandsangli.ac.in/wp-content/uploads/WCE-1-scaled.png" alt="logo">
+                    </div>
+                    <p class="text-gray-400 text-sm">Leading engineering college committed to excellence in education, research, and innovation.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="admissions.html" class="text-gray-400 hover:text-white">Admissions</a></li>
+                        <li><a href="departments.html" class="text-gray-400 hover:text-white">Departments</a></li>
+                        <li><a href="placements.html" class="text-gray-400 hover:text-white">Placements</a></li>
+                    </ul>
+                </div>
+
+                <!-- Departments -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Departments</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cse.html" class="text-gray-400 hover:text-white">Computer Science</a></li>
+                        <li><a href="aiml.html" class="text-gray-400 hover:text-white">AI & ML</a></li>
+                        <li><a href="mechanical.html" class="text-gray-400 hover:text-white">Mechanical</a></li>
+                        <li><a href="electrical.html" class="text-gray-400 hover:text-white">Electrical</a></li>
+                        <li><a href="student-life.html" class="text-gray-400 hover:text-white">Student Life</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Walchand College of Engineering, Vishrambag, Sangli - 416415, Maharashtra, India.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">+91 233 2300383</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">info@walchandsangli.ac.in</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.facebook.com/walchandsangli/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/WCESangli" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/wcesangli/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://in.linkedin.com/school/walchandcollegeofengineering/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 Walchand College of Engineering. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot Button -->
+    <button onclick="toggleChatbot()"
+        class="fixed bottom-6 right-6 bg-blue-600 text-white rounded-full w-16 h-16 shadow-lg hover:bg-blue-700 flex items-center justify-center z-50">
+        <i class="fas fa-comments text-2xl"></i>
+    </button>
+
+    <div id="chatbot-box" class="hidden fixed bottom-24 right-6 w-80 h-96 bg-white shadow-xl rounded-lg flex flex-col overflow-hidden z-50">
+    
+        <div class="bg-blue-600 text-white p-3 font-semibold">
+            Virtual Host
+        </div>
+
+        <div id="chat-messages" class="flex-1 p-3 overflow-y-auto h-64 text-sm space-y-2">
+            <div class="text-gray-500 bg-[#f2f2f0] p-2 rounded-t-2xl rounded-br-2xl max-w-56">Hi there 👋 <br/> How can I help you today?</div>
+        </div>
+
+        <div class="flex border-t m-0.5">
+            <input id="chat-input" type="text" placeholder="Type a message..."
+                class="flex-1 px-3 py-2 outline-none text-xs italic">
+            <button onclick="sendMessage()" class="bg-blue-600 text-white text-xs px-4 py-1 rounded-br-md">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

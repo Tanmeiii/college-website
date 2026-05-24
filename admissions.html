@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - Walchand College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+        /* Smooth transitions */
+        * { transition: all 0.3s ease; }
+        .carousel-item { display: none; }
+        .carousel-item.active { display: block; }
+    </style>
+    <script src="chatbot.js"></script>
+    <script>
+        tailwind.config = {
+        theme: {
+            extend: {
+            fontFamily: {
+                cedar: ['"Cedarville Cursive"', 'cursive'],
+            }
+            }
+        }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <!-- <i class="fas fa-graduation-cap text-3xl text-blue-600"></i>
+                    <span class="ml-2 text-xs font-bold text-gray-800">WALCHAND COLLEGE OF ENGINEERING</span> -->
+                    <img height="150px" width="300px" src="https://walchandsangli.ac.in/wp-content/uploads/WCE-1-scaled.png" alt="logo">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 font-semibold hover:text-blue-800">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600">About</a>
+                    <a href="admissions.html" class="text-blue-600 hover:text-blue-600">Admissions</a>
+                    
+                    <!-- Departments Dropdown -->
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 flex items-center">
+                            Departments <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
+                            <a href="departments.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">All Departments</a>
+                            <a href="cse.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Computer Science</a>
+                            <a href="aiml.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">AI & ML</a>
+                            <a href="mechanical.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Mechanical</a>
+                            <a href="electrical.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Electrical</a>
+                        </div>
+                    </div>
+
+                    <a href="placements.html" class="text-gray-700 hover:text-blue-600">Placements</a>
+                    <a href="student-life.html" class="text-gray-700 hover:text-blue-600">Student Life</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a>
+                    
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="border border-gray-300 rounded-full px-4 py-1 pl-10 text-sm focus:outline-none focus:border-blue-500">
+                        <i class="fas fa-search absolute left-3 top-2 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-700 font-semibold">Home</a>
+                <a href="about.html" class="block text-gray-700 hover:text-blue-600">About</a>
+                <a href="admissions.html" class="block text-blue-600 hover:text-blue-600">Admissions</a>
+                <div>
+                    <button id="mobile-dept-toggle" class="w-full text-left text-gray-700 hover:text-blue-600">
+                        Departments <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                    <div id="mobile-dept-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="departments.html" class="block text-gray-600 hover:text-blue-600">All Departments</a>
+                        <a href="cse.html" class="block text-gray-600 hover:text-blue-600">Computer Science</a>
+                        <a href="aiml.html" class="block text-gray-600 hover:text-blue-600">AI & ML</a>
+                        <a href="mechanical.html" class="block text-gray-600 hover:text-blue-600">Mechanical</a>
+                        <a href="electrical.html" class="block text-gray-600 hover:text-blue-600">Electrical</a>
+                    </div>
+                </div>
+                <a href="placements.html" class="block text-gray-700 hover:text-blue-600">Placements</a>
+                <a href="student-life.html" class="block text-gray-700 hover:text-blue-600">Student Life</a>
+                <a href="contact.html" class="block text-gray-700 hover:text-blue-600">Contact</a>
+                <input type="text" placeholder="Search..." class="w-full border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-blue-500">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Admissions 2026-27</h1>
+            <p class="text-xl font-cedar">Begin Your Journey of Excellence</p>
+        </div>
+    </section>
+
+    <!-- Step-by-Step Admission Process -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Admission Process</h2>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 mb-4 md:mb-0 md:text-right">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-bold text-blue-600 mb-2">Step 1: Registration</h3>
+                            <p class="text-gray-600">Visit our website and complete the online registration form. Fill in your personal and academic details.</p>
+                            <p class="text-sm text-gray-500 mt-2">Duration: 5-10 minutes</p>
+                        </div>
+                    </div>
+                    <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10">
+                        1
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10">
+                        2
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 mb-4 md:mb-0">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-bold text-blue-600 mb-2">Step 2: Document Upload</h3>
+                            <p class="text-gray-600">Upload scanned copies of required documents including 12th marksheet, JEE scorecard, and photographs.</p>
+                            <p class="text-sm text-gray-500 mt-2">Required: 12th Marksheet, JEE Score, Photos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 mb-4 md:mb-0 md:text-right">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-bold text-blue-600 mb-2">Step 3: Application Fee</h3>
+                            <p class="text-gray-600">Pay the non-refundable application fee of ₹1,500 through online payment gateway.</p>
+                            <p class="text-sm text-gray-500 mt-2">Fee: ₹1,500 (Non-refundable)</p>
+                        </div>
+                    </div>
+                    <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10">
+                        3
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10">
+                        4
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 mb-4 md:mb-0">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-bold text-blue-600 mb-2">Step 4: Counseling</h3>
+                            <p class="text-gray-600">Attend online or offline counseling session. Choose your preferred branch based on merit and availability.</p>
+                            <p class="text-sm text-gray-500 mt-2">Date: May 15-20, 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative mb-12 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 md:pr-12 mb-4 md:mb-0 md:text-right">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-bold text-blue-600 mb-2">Step 5: Seat Confirmation</h3>
+                            <p class="text-gray-600">Pay seat confirmation fee and complete document verification to secure your admission.</p>
+                            <p class="text-sm text-gray-500 mt-2">Fee: ₹25,000</p>
+                        </div>
+                    </div>
+                    <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-10">
+                        <i class="fas fa-check text-xl"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 shadow-lg">
+                    Start Application <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Criteria -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Eligibility Criteria</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-4 rounded-full">
+                            <i class="fas fa-graduation-cap text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">Academic Requirements</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Passed 12th/Intermediate with Physics, Chemistry, and Mathematics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Minimum 60% aggregate marks (55% for reserved categories)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Valid JEE Main score required</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Age limit: Should not exceed 25 years as on July 1, 2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-4 rounded-full">
+                            <i class="fas fa-file-alt text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">Required Documents</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>10th & 12th Marksheets and Certificates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>JEE Main Scorecard</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Transfer Certificate from previous institution</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Caste Certificate (if applicable)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Passport size photographs (4 copies)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                            <span>Aadhar Card & other ID proofs</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fee Structure -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Fee Structure 2026-27</h2>
+            
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-blue-600 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left">Program / Branch</th>
+                                <th class="px-6 py-4 text-left">Tuition Fee (Annual)</th>
+                                <th class="px-6 py-4 text-left">Other Fees</th>
+                                <th class="px-6 py-4 text-left">Total (First Year)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">Computer Science Engineering</td>
+                                <td class="px-6 py-4 font-semibold">₹2,00,000</td>
+                                <td class="px-6 py-4">₹15,000</td>
+                                <td class="px-6 py-4 font-bold text-blue-600">₹2,15,000</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">AI & Machine Learning</td>
+                                <td class="px-6 py-4 font-semibold">₹2,00,000</td>
+                                <td class="px-6 py-4">₹15,000</td>
+                                <td class="px-6 py-4 font-bold text-blue-600">₹2,15,000</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">Mechanical Engineering</td>
+                                <td class="px-6 py-4 font-semibold">₹1,50,000</td>
+                                <td class="px-6 py-4">₹15,000</td>
+                                <td class="px-6 py-4 font-bold text-blue-600">₹1,65,000</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">Electrical Engineering</td>
+                                <td class="px-6 py-4 font-semibold">₹1,50,000</td>
+                                <td class="px-6 py-4">₹15,000</td>
+                                <td class="px-6 py-4 font-bold text-blue-600">₹1,65,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 p-6">
+                    <h4 class="font-bold mb-3">Additional Fees (Optional):</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Hostel Fee (Annual)</span>
+                            <span class="font-semibold">₹80,000 - ₹1,20,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Mess Fee (Annual)</span>
+                            <span class="font-semibold">₹50,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Transportation (Annual)</span>
+                            <span class="font-semibold">₹25,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Caution Deposit (Refundable)</span>
+                            <span class="font-semibold">₹10,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+                <h4 class="font-bold text-blue-900 mb-2">Scholarship Opportunities</h4>
+                <p class="text-blue-800">Merit-based scholarships available for top performers. Up to 50% fee waiver for students scoring above 95% in JEE Main. Financial assistance available for economically weaker sections.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50">
+                        <span class="font-bold text-lg">When does the admission process start?</span>
+                        <i id="accordion-icon-1" class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="accordion-content-1" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">The admission process for 2026-27 starts from April 1, 2026. Online applications will be accepted till April 30, 2026.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50">
+                        <span class="font-bold text-lg">Is JEE Main score mandatory?</span>
+                        <i id="accordion-icon-2" class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="accordion-content-2" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Yes, valid JEE Main score is mandatory for admission to all B.Tech programs. State quota students may also apply through state-level entrance exams.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleAccordion(3)" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50">
+                        <span class="font-bold text-lg">How many seats are available?</span>
+                        <i id="accordion-icon-3" class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="accordion-content-3" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">We have a total of 960 seats across all branches: CSE (240), AI/ML (120), Mechanical (300), and Electrical (300).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleAccordion(4)" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50">
+                        <span class="font-bold text-lg">Can I change my branch after admission?</span>
+                        <i id="accordion-icon-4" class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="accordion-content-4" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Branch change is possible after first year based on academic performance and seat availability, subject to institution guidelines.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleAccordion(5)" class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50">
+                        <span class="font-bold text-lg">Are there any scholarships available?</span>
+                        <i id="accordion-icon-5" class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="accordion-content-5" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Yes, we offer merit-based scholarships, sports scholarships, and financial aid for economically weaker sections. Government scholarships are also applicable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Important Dates</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-blue-600">
+                    <div class="text-blue-600 font-bold text-sm mb-2">APPLICATION OPENS</div>
+                    <div class="text-3xl font-bold mb-2">APR 01</div>
+                    <div class="text-gray-600 text-sm">Online registration begins</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-green-600">
+                    <div class="text-green-600 font-bold text-sm mb-2">APPLICATION CLOSES</div>
+                    <div class="text-3xl font-bold mb-2">APR 30</div>
+                    <div class="text-gray-600 text-sm">Last date to apply</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-purple-600">
+                    <div class="text-purple-600 font-bold text-sm mb-2">COUNSELING</div>
+                    <div class="text-3xl font-bold mb-2">MAY 15</div>
+                    <div class="text-gray-600 text-sm">Counseling process starts</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-orange-600">
+                    <div class="text-orange-600 font-bold text-sm mb-2">CLASSES BEGIN</div>
+                    <div class="text-3xl font-bold mb-2">JUL 01</div>
+                    <div class="text-gray-600 text-sm">Academic session starts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img height="150px" width="300px" src="https://walchandsangli.ac.in/wp-content/uploads/WCE-1-scaled.png" alt="logo">
+                    </div>
+                    <p class="text-gray-400 text-sm">Leading engineering college committed to excellence in education, research, and innovation.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="admissions.html" class="text-gray-400 hover:text-white">Admissions</a></li>
+                        <li><a href="departments.html" class="text-gray-400 hover:text-white">Departments</a></li>
+                        <li><a href="placements.html" class="text-gray-400 hover:text-white">Placements</a></li>
+                    </ul>
+                </div>
+
+                <!-- Departments -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Departments</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cse.html" class="text-gray-400 hover:text-white">Computer Science</a></li>
+                        <li><a href="aiml.html" class="text-gray-400 hover:text-white">AI & ML</a></li>
+                        <li><a href="mechanical.html" class="text-gray-400 hover:text-white">Mechanical</a></li>
+                        <li><a href="electrical.html" class="text-gray-400 hover:text-white">Electrical</a></li>
+                        <li><a href="student-life.html" class="text-gray-400 hover:text-white">Student Life</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Walchand College of Engineering, Vishrambag, Sangli - 416415, Maharashtra, India.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">+91 233 2300383</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <span class="text-gray-400">info@walchandsangli.ac.in</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.facebook.com/walchandsangli/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/WCESangli" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/wcesangli/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://in.linkedin.com/school/walchandcollegeofengineering/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 Walchand College of Engineering. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot Button -->
+    <button onclick="toggleChatbot()"
+        class="fixed bottom-6 right-6 bg-blue-600 text-white rounded-full w-16 h-16 shadow-lg hover:bg-blue-700 flex items-center justify-center z-50">
+        <i class="fas fa-comments text-2xl"></i>
+    </button>
+
+    <div id="chatbot-box" class="hidden fixed bottom-24 right-6 w-80 h-96 bg-white shadow-xl rounded-lg flex flex-col overflow-hidden z-50">
+    
+        <div class="bg-blue-600 text-white p-3 font-semibold">
+            Virtual Host
+        </div>
+
+        <div id="chat-messages" class="flex-1 p-3 overflow-y-auto h-64 text-sm space-y-2">
+            <div class="text-gray-500 bg-[#f2f2f0] p-2 rounded-t-2xl rounded-br-2xl max-w-56">Hi there 👋 <br/> How can I help you today?</div>
+        </div>
+
+        <div class="flex border-t m-0.5">
+            <input id="chat-input" type="text" placeholder="Type a message..."
+                class="flex-1 px-3 py-2 outline-none text-xs italic">
+            <button onclick="sendMessage()" class="bg-blue-600 text-white text-xs px-4 py-1 rounded-br-md">Send</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.getElementById('mobile-dept-toggle').addEventListener('click', function() {
+            const deptMenu = document.getElementById('mobile-dept-menu');
+            deptMenu.classList.toggle('hidden');
+        });
+
+        function toggleAccordion(num) {
+            const content = document.getElementById(`accordion-content-${num}`);
+            const icon = document.getElementById(`accordion-icon-${num}`);
+            
+            content.classList.toggle('hidden');
+            if (content.classList.contains('hidden')) {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    </script>
+
+</body>
+</html>
